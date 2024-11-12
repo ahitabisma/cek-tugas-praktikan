@@ -105,6 +105,7 @@ const formatDate = (timestamp: string) => {
             <th class="text-center">Timestamp</th>
           </tr>
         </thead>
+        <!-- Data -->
         <tbody>
           <tr v-for="(item, index) in responseStore.responses" :key="index">
             <td class="text-center">{{ item['Pertemuan ke'] }}</td>
