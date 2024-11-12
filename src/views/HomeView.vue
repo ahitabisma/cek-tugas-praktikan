@@ -56,7 +56,7 @@ const closeAlert = () => {
 
 <template>
   <main class="mx-6 md:mx-16 my-14">
-    <!-- Notes -->
+    <!-- Notes Update -->
     <div v-if="alertOpen" role="alert" class="alert shadow-lg mb-5">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
