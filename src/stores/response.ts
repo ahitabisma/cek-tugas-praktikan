@@ -44,5 +44,29 @@ export const useResponseStore = defineStore("response", () => {
     }
   }
 
-  return { responses, response, getResponseByNim, errorMessage };
+  // Get Response By Email
+  async function getResponseByEmail(email: string) {
+    try {
+      const response = await axios.get(`${baseUrl}?action=email&email=${email}`);
+
+      if (response.data.code === 404) {
+        errorMessage.value = response.data.data;
+      } else if (response.data.code !== 200) {
+        errorMessage.value = response.data.data;
+      } else {
+        errorMessage.value = "";
+        responses.value = response.data.data || [];
+      }
+
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        errorMessage.value = error.message;
+      } else {
+        errorMessage.value = "Maaf ada error";
+      }
+    }
+  }
+
+  return { responses, response, getResponseByNim, getResponseByEmail, errorMessage };
 });

@@ -10,9 +10,9 @@ const isLoading = ref<boolean>(false);
 const loadingStates = reactive<{ [key: string]: boolean }>({});
 
 // Search
-function kirim() {
+function cariByNim() {
   if (!nim.value) {
-    responseStore.errorMessage = 'Masukin NIM dulu';
+    responseStore.errorMessage = 'Masukan NIM atau Email terlebih dahulu';
     return;
   }
 
@@ -20,6 +20,21 @@ function kirim() {
   responseStore.errorMessage = '';
 
   responseStore.getResponseByNim(nim.value)
+    .finally(() => {
+      isLoading.value = false;
+    });
+}
+
+function cariByEmail() {
+  if (!nim.value) {
+    responseStore.errorMessage = 'Masukan NIM atau Email terlebih dahulu';
+    return;
+  }
+
+  isLoading.value = true;
+  responseStore.errorMessage = '';
+
+  responseStore.getResponseByEmail(nim.value)
     .finally(() => {
       isLoading.value = false;
     });
@@ -70,7 +85,7 @@ const closeAlert = () => {
 
     <!-- Input and Search Buttons -->
     <label class="input input-bordered flex items-center gap-2">
-      <input type="text" class="grow" placeholder="Masukin NIM" v-model="nim" @keydown.enter="kirim" />
+      <input type="text" class="grow" placeholder="Masukan NIM atau Email" v-model="nim" @keydown.enter="cariByNim || cariByEmail" />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
         <path fill-rule="evenodd"
           d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
@@ -81,7 +96,8 @@ const closeAlert = () => {
     <!-- Reset and Search Buttons -->
     <div class="mt-5">
       <button @click="reset" class="btn btn-sm mr-5">Reset</button>
-      <button @click="kirim" class="btn btn-sm">Cari</button>
+      <button @click="cariByNim" class="btn btn-sm mr-5">Cari By NIM</button>
+      <button @click="cariByEmail" class="btn btn-sm">Cari By Email</button>
     </div>
 
     <!-- Error Message -->
