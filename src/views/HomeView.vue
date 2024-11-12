@@ -114,7 +114,7 @@ const formatDate = (timestamp: string) => {
       </table>
     </div>
 
-    <!-- Loading State -->
+    <!-- Loading -->
     <div v-else-if="isLoading" class="mt-5">
       <p>Mohon bersabar...</p>
     </div>
