@@ -109,9 +109,6 @@ const formatDate = (timestamp: string) => {
           <tr v-for="(item, index) in responseStore.responses" :key="index">
             <td class="text-center">{{ item['Pertemuan ke'] }}</td>
             <td class="text-center">{{ formatDate(item['Timestamp']) }}</td>
-            <td class="text-center lg:break-all link link-primary">
-              <a :href="item['Link Repository Github']" target="_blank">{{ item['Link Repository Github'] }}</a>
-            </td>
           </tr>
         </tbody>
       </table>
