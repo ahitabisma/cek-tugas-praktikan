@@ -96,7 +96,7 @@ const formatDate = (timestamp: string) => {
       </ul>
     </div>
 
-    <!-- Response Table -->
+    <!-- Table -->
     <div v-if="!isLoading && !responseStore.errorMessage && responseStore.responses.length > 0" class="overflow-x-auto">
       <table class="table w-full min-w-[400px]">
         <thead>
