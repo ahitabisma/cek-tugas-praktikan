@@ -46,11 +46,28 @@ const formatDate = (timestamp: string) => {
 
   return date.toLocaleDateString('id-ID', options);
 };
+
+const alertOpen = ref(true);
+const closeAlert = () => {
+  alertOpen.value = false;
+}
 </script>
 
 
 <template>
   <main class="mx-6 md:mx-16 my-14">
+    <!-- Notes -->
+    <div v-if="alertOpen" role="alert" class="alert shadow-lg mb-5">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info h-6 w-6 shrink-0">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div>
+        <div class="text-md">Pembaruan form dilakukan setiap satu jam sekali, yaitu pada pukul 09:30, 10:30, 11:30, dan seterusnya. Jika merasa sudah mengumpulkan tugas, harap tidak mengumpulkan ulang. Silakan cek pada jadwal pembaruan berikutnya untuk memastikan data telah tersimpan.</div>
+      </div>
+      <button class="btn btn-sm" @click="closeAlert">Close</button>
+    </div>
+
     <!-- Input and Search Buttons -->
     <label class="input input-bordered flex items-center gap-2">
       <input type="text" class="grow" placeholder="Masukin NIM" v-model="nim" @keydown.enter="kirim" />
